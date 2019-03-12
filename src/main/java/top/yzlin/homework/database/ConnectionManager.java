@@ -44,9 +44,9 @@ public class ConnectionManager implements ComponentInit {
 
     /**
      * 我觉得这么控制会话会比较安全吧
-     * @param func
-     * @param <T>
-     * @return
+     * @param func 给一个函数，用于获取会话
+     * @param <T> 任意类型
+     * @return 返回值为func的返回值
      */
     public <T> T getStatement(Function<Statement,T> func){
         return getConnection(c->{
@@ -62,6 +62,11 @@ public class ConnectionManager implements ComponentInit {
         });
     }
 
+    /**
+     * getConnection(Function<Connection,T> func)的无返回值版本
+     *
+     * @param func 给个函数用于获取链接
+     */
     public void getConnection(Consumer<Connection> func){
         getConnection(c->{
             func.accept(c);
@@ -69,6 +74,12 @@ public class ConnectionManager implements ComponentInit {
         });
     }
 
+    /**
+     * 我觉得这么控制链接会比较安全吧
+     * @param func 给一个函数，用于获取链接
+     * @param <T> 任意类型
+     * @return 返回值为func的返回值
+     */
     public <T> T getConnection(Function<Connection,T> func){
         int index=-1;
         Out:

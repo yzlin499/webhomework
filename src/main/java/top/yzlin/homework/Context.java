@@ -11,7 +11,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * 一个具有基本ioc功能的简单上下文类
@@ -19,7 +22,12 @@ import java.util.*;
 public class Context {
     static {
         try {
-            CLASSPATH = new File(Class.class.getClass().getResource("/").toURI());
+            URL url;
+            url = Thread.currentThread().getContextClassLoader().getResource("/");
+            if (url == null) {
+                url = Class.class.getResource("/");
+            }
+            CLASSPATH = new File(url.toURI());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -39,6 +47,9 @@ public class Context {
         try {
             properties.load(new FileReader(getResources("config.properties")));
             addComponent(Context.class, this);
+            for (Class component : ContextConfig.COMPONENTS) {
+                addComponent(component);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -13,7 +13,7 @@ public class HW3Filter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        if ("/hw3/index.html".equals(httpRequest.getRequestURI())) {
+        if ("/hw3/index.jsp".equals(httpRequest.getRequestURI())) {
             chain.doFilter(request, response);
         } else {
             HttpSession session = httpRequest.getSession();
@@ -24,7 +24,7 @@ public class HW3Filter implements Filter {
                 chain.doFilter(request, response);
             } else {
                 HttpServletResponse httpResponse = (HttpServletResponse) response;
-                httpResponse.sendRedirect("/hw3/index.html");
+                httpResponse.sendRedirect("/hw3/index.jsp");
             }
         }
     }

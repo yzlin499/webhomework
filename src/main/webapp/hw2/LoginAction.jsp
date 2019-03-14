@@ -43,7 +43,7 @@
 <h2>欢迎你${user.name}会员注册成功！！！3秒后跳转到登录界面</h2>
 <script>
     setTimeout(function (args) {
-        window.location = "index.html";
+        window.location = "index.jsp";
     }, 3000);
 </script>
 <%}else{%>

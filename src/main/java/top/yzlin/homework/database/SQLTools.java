@@ -6,6 +6,7 @@ import java.lang.reflect.Parameter;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -109,6 +110,8 @@ public class SQLTools {
             return resultSet.getShort(name);
         } else if (boolean.class.equals(c) || Boolean.class.equals(c)) {
             return resultSet.getBoolean(name);
+        } else if (Date.class.equals(c)) {
+            return resultSet.getDate(name);
         } else {
             return null;
         }

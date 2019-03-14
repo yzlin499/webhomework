@@ -12,12 +12,11 @@ public abstract class BaseViewParse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, Object> model = new HashMap<>();
-        String viewName = "/WEB-INF/classes" + doOperation(req.getRequestURI(), model);
+        String viewName = "/WEB-INF/classes" + doOperation(req, model);
         model.forEach(req::setAttribute);
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         req.getRequestDispatcher(viewName).forward(req, resp);
-
     }
 
     @Override
@@ -31,5 +30,5 @@ public abstract class BaseViewParse extends HttpServlet {
      * @param model 模型啊
      * @return 视图名称
      */
-    protected abstract String doOperation(String requestURI, Map<String, Object> model);
+    protected abstract String doOperation(HttpServletRequest req, Map<String, Object> model);
 }

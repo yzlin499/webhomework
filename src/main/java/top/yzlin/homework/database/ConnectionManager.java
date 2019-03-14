@@ -3,10 +3,7 @@ package top.yzlin.homework.database;
 import top.yzlin.homework.ioc.ComponentInit;
 
 import javax.annotation.Resource;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -53,6 +50,27 @@ public class ConnectionManager implements ComponentInit {
             try {
                 Statement statement=c.createStatement();
                 T t=func.apply(statement);
+                statement.close();
+                return t;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+    }
+
+    public void getPreparedStatement(String sql, Consumer<PreparedStatement> func) {
+        getPreparedStatement(sql, c -> {
+            func.accept(c);
+            return null;
+        });
+    }
+
+    public <T> T getPreparedStatement(String sql, Function<PreparedStatement, T> func) {
+        return getConnection(c -> {
+            try {
+                PreparedStatement statement = c.prepareStatement(sql);
+                T t = func.apply(statement);
                 statement.close();
                 return t;
             } catch (SQLException e) {

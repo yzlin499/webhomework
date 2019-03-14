@@ -1,26 +1,13 @@
-import top.yzlin.homework.Context;
-import top.yzlin.homework.database.ConnectionManager;
-import top.yzlin.homework.database.DBInfo;
-import top.yzlin.homework.database.SQLTools;
-import top.yzlin.homework.doa.UserDAO;
-import top.yzlin.homework.doa.UserDAOImpl;
 import top.yzlin.homework.entity.User;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.regex.Pattern;
-
-import static top.yzlin.homework.Context.getResources;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class Test {
@@ -40,15 +27,15 @@ public class Test {
         this.user = user;
     }
 
-    public static void main(String[] args) throws URISyntaxException, IOException, InvocationTargetException, IllegalAccessException {
-        Context context=Context.getInstance();
-        context.addComponent(DBInfo.class);
-        context.addComponent(ConnectionManager.class);
-        context.addComponent(SQLTools.class);
-        context.addComponent(UserDAOImpl.class);
+    public static void main(String[] args) throws URISyntaxException, IOException, InvocationTargetException, IllegalAccessException, ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.CHINESE);
+        Date date = simpleDateFormat.parse("2019-03-14T17:15");
 
-        System.out.println(context.getComponent(UserDAO.class)
-                .getUserInfo("admin"));
+        System.out.println(date.getTime());
+
+
+
+
 
 
     }

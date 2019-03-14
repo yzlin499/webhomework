@@ -1,11 +1,13 @@
 package top.yzlin.homework.entity;
 
+import java.util.Date;
+
 public class Ticket {
     private String name;
     private String sex;
     private String originating;
     private String destination;
-    private String date;
+    private Date date;
     private String idCardNo;
 
     public String getName() {
@@ -21,7 +23,13 @@ public class Ticket {
     }
 
     public void setSex(String sex) {
-        this.sex = sex;
+        if ("man".equals(sex.toLowerCase())) {
+            this.sex = "男";
+        } else if ("woman".equals(sex.toLowerCase())) {
+            this.sex = "女";
+        } else {
+            this.sex = sex;
+        }
     }
 
     public String getOriginating() {
@@ -40,11 +48,11 @@ public class Ticket {
         this.destination = destination;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -54,5 +62,17 @@ public class Ticket {
 
     public void setIdCardNo(String idCardNo) {
         this.idCardNo = idCardNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", originating='" + originating + '\'' +
+                ", destination='" + destination + '\'' +
+                ", date='" + date + '\'' +
+                ", idCardNo='" + idCardNo + '\'' +
+                '}';
     }
 }

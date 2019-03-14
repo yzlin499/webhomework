@@ -3,6 +3,7 @@ package top.yzlin.homework;
 import top.yzlin.homework.database.ConnectionManager;
 import top.yzlin.homework.database.DBInfo;
 import top.yzlin.homework.database.SQLTools;
+import top.yzlin.homework.doa.TicketDAOImpl;
 import top.yzlin.homework.doa.UserDAOImpl;
 
 public class ContextConfig {
@@ -14,6 +15,7 @@ public class ContextConfig {
             //数据库对象封装工具
             SQLTools.class,
             //UserDAO
-            UserDAOImpl.class
+            UserDAOImpl.class,
+            TicketDAOImpl.class
     };
 }

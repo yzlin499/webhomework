@@ -19,6 +19,9 @@
         <url-pattern>/hw3/*</url-pattern>
     </filter-mapping>
 
+    <listener>
+        <listener-class>top.yzlin.homework.listener.MyListener</listener-class>
+    </listener>
 
 </web-app>
 

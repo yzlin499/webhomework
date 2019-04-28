@@ -6,6 +6,6 @@
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/hw4/jspAndJavaBean">在线机票预订（使用jsp+javaBean）</a><br>
-<a href="${pageContext.request.contextPath}/hw4/jspAndServletAndJavaBean">在线机票预订（使用jsp+javaBean）</a>
+<a href="${pageContext.request.contextPath}/hw4/jspAndServletAndJavaBean">在线机票预订（使用jsp+servlet+javaBean）</a>
 </body>
 </html>
